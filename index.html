@@ -1,0 +1,2451 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Derecho Procesal Mercantil - Estudio Interactivo</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Quicksand', 'Segoe UI', sans-serif;
+            background: linear-gradient(180deg, #fff5f8 0%, #faf0f5 30%, #f5eef8 60%, #f0f5f8 100%);
+            min-height: 100vh;
+            color: #5a4a5a;
+        }
+
+        /* Floating decorations */
+        body::before {
+            content: '';
+            position: fixed;
+            top: -50px;
+            right: -50px;
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, rgba(248,164,200,0.15) 0%, transparent 70%);
+            border-radius: 50%;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        body::after {
+            content: '';
+            position: fixed;
+            bottom: -80px;
+            left: -80px;
+            width: 250px;
+            height: 250px;
+            background: radial-gradient(circle, rgba(232,213,245,0.2) 0%, transparent 70%);
+            border-radius: 50%;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #ffffff 0%, #fff5f8 50%, #fce8f0 100%);
+            padding: 30px 20px;
+            text-align: center;
+            border-bottom: 3px solid #f8a4c8;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '~ * ~ * ~ * ~ * ~';
+            position: absolute;
+            top: 8px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.7rem;
+            color: #f8a4c8;
+            letter-spacing: 4px;
+            opacity: 0.6;
+        }
+
+        .header::after {
+            content: '~ * ~ * ~ * ~ * ~';
+            position: absolute;
+            bottom: 8px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.7rem;
+            color: #f8a4c8;
+            letter-spacing: 4px;
+            opacity: 0.6;
+        }
+
+.header-melody-img {
+    width: 120px;
+    height: 120px;
+    object-fit: contain;
+    margin-bottom: 12px;
+    filter: drop-shadow(0 4px 12px rgba(248,164,200,0.35));
+    animation: floatBunny 3s ease-in-out infinite;
+}
+
+@keyframes floatBunny {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+}
+
+        .header h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #d4698a;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            text-shadow: 0 1px 2px rgba(248,164,200,0.3);
+        }
+
+        .header p {
+            color: #b08aa8;
+            margin-top: 6px;
+            font-weight: 500;
+            font-size: 0.95rem;
+            letter-spacing: 1px;
+        }
+
+        .nav-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            padding: 18px 15px;
+            background: rgba(255,255,255,0.7);
+            backdrop-filter: blur(10px);
+            flex-wrap: wrap;
+            border-bottom: 1px solid #f0e0e8;
+        }
+
+        .nav-tab {
+            padding: 12px 28px;
+            background: white;
+            border: 2px solid #f0e0e8;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: #8a7a8a;
+            font-weight: 600;
+            font-family: 'Quicksand', sans-serif;
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-tab::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(248,164,200,0.1), transparent);
+            transition: left 0.5s;
+        }
+
+        .nav-tab:hover::before {
+            left: 100%;
+        }
+
+        .nav-tab:hover, .nav-tab.active {
+            background: linear-gradient(135deg, #f8a4c8 0%, #e8879e 100%);
+            color: white;
+            border-color: #f8a4c8;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(248,164,200,0.35);
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 25px 20px;
+        }
+
+        .section {
+            display: none;
+            animation: fadeSlideIn 0.4s ease;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        @keyframes fadeSlideIn {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .card {
+            background: rgba(255,255,255,0.85);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 28px;
+            margin-bottom: 22px;
+            border: 1.5px solid #f0e0e8;
+            box-shadow: 0 4px 15px rgba(248,164,200,0.08);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .card:hover {
+            border-color: #f8a4c8;
+            box-shadow: 0 8px 30px rgba(248,164,200,0.15);
+            transform: translateY(-2px);
+        }
+
+        .card h2 {
+            color: #d4698a;
+            margin-bottom: 15px;
+            font-size: 1.35rem;
+            font-weight: 700;
+            border-bottom: 2px solid #fce8f0;
+            padding-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .card h3 {
+            color: #c45878;
+            margin: 18px 0 10px;
+            font-size: 1.05rem;
+            font-weight: 600;
+        }
+
+        .card ul {
+            list-style: none;
+            padding-left: 18px;
+        }
+
+        .card li {
+            margin: 8px 0;
+            padding-left: 22px;
+            position: relative;
+            line-height: 1.6;
+        }
+
+        .card li::before {
+            content: '\2661';
+            color: #f8a4c8;
+            position: absolute;
+            left: 0;
+            font-size: 0.85rem;
+        }
+
+        .card p {
+            line-height: 1.8;
+            color: #6a5a6a;
+            margin-bottom: 10px;
+        }
+
+        .topic-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 16px;
+        }
+
+        .topic-item {
+            background: linear-gradient(135deg, #ffffff 0%, #fff8fa 100%);
+            border: 1.5px solid #f0e0e8;
+            border-radius: 16px;
+            padding: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .topic-item::after {
+            content: '';
+            position: absolute;
+            top: -20px;
+            right: -20px;
+            width: 60px;
+            height: 60px;
+            background: radial-gradient(circle, rgba(248,164,200,0.12) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .topic-item:hover {
+            background: linear-gradient(135deg, #fff5f8 0%, #fce8f0 100%);
+            border-color: #f8a4c8;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(248,164,200,0.2);
+        }
+
+        .topic-item h4 {
+            color: #d4698a;
+            margin-bottom: 6px;
+            font-weight: 700;
+            font-size: 1rem;
+        }
+
+        .topic-item p {
+            font-size: 0.85rem;
+            color: #b08aa8;
+        }
+
+        .quiz-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .question-card {
+            background: rgba(255,255,255,0.9);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 32px;
+            border: 1.5px solid #f0e0e8;
+            box-shadow: 0 4px 15px rgba(248,164,200,0.08);
+        }
+
+        .question-number {
+            color: #f8a4c8;
+            font-size: 0.9rem;
+            margin-bottom: 12px;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        .question-text {
+            font-size: 1.15rem;
+            margin-bottom: 25px;
+            line-height: 1.7;
+            color: #5a4a5a;
+            font-weight: 500;
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .option-btn {
+            padding: 16px 22px;
+            background: linear-gradient(135deg, #fefefe 0%, #faf5f8 100%);
+            border: 2px solid #f0e0e8;
+            border-radius: 14px;
+            cursor: pointer;
+            text-align: left;
+            transition: all 0.3s ease;
+            color: #5a4a5a;
+            font-size: 0.95rem;
+            font-family: 'Quicksand', sans-serif;
+            font-weight: 500;
+        }
+
+        .option-btn:hover:not(.disabled) {
+            background: linear-gradient(135deg, #fff5f8 0%, #fce8f0 100%);
+            border-color: #f8a4c8;
+            transform: translateX(5px);
+            box-shadow: 0 3px 12px rgba(248,164,200,0.15);
+        }
+
+        .option-btn.correct {
+            background: linear-gradient(135deg, #e8f8ee 0%, #d4edda 100%);
+            border-color: #7bc49a;
+            color: #3a7a5a;
+        }
+
+        .option-btn.incorrect {
+            background: linear-gradient(135deg, #fef0f0 0%, #fde8e8 100%);
+            border-color: #e89a9a;
+            color: #c45a5a;
+        }
+
+        .option-btn.disabled {
+            cursor: not-allowed;
+            opacity: 0.55;
+        }
+
+        .feedback {
+            margin-top: 22px;
+            padding: 22px;
+            border-radius: 14px;
+            display: none;
+            font-weight: 500;
+        }
+
+        .feedback.show {
+            display: block;
+            animation: fadeSlideIn 0.3s ease;
+        }
+
+        .feedback.correct {
+            background: linear-gradient(135deg, #e8f8ee 0%, #d4edda 100%);
+            border: 1.5px solid #7bc49a;
+            color: #3a7a5a;
+        }
+
+        .feedback.incorrect {
+            background: linear-gradient(135deg, #fef0f0 0%, #fde8e8 100%);
+            border: 1.5px solid #e89a9a;
+            color: #c45a5a;
+        }
+
+        .feedback h4 {
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .feedback.correct h4 { color: #3a7a5a; }
+        .feedback.incorrect h4 { color: #c45a5a; }
+
+        .btn {
+            padding: 13px 32px;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 0.95rem;
+            font-weight: 700;
+            font-family: 'Quicksand', sans-serif;
+            transition: all 0.3s ease;
+            margin: 10px 5px;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #f8a4c8 0%, #e8879e 100%);
+            color: white;
+            box-shadow: 0 4px 15px rgba(248,164,200,0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 22px rgba(248,164,200,0.45);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: #8a7a8a;
+            border: 2px solid #f0e0e8;
+        }
+
+        .btn-secondary:hover {
+            background: #fff5f8;
+            border-color: #f8a4c8;
+            color: #d4698a;
+        }
+
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 18px 24px;
+            background: rgba(255,255,255,0.8);
+            border-radius: 16px;
+            min-width: 120px;
+            border: 1.5px solid #f0e0e8;
+            transition: all 0.3s;
+        }
+
+        .stat-item:hover {
+            border-color: #f8a4c8;
+            transform: translateY(-2px);
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #d4698a;
+        }
+
+        .stat-label {
+            font-size: 0.8rem;
+            color: #b08aa8;
+            margin-top: 4px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        .summary-editor {
+            width: 100%;
+            min-height: 400px;
+            background: linear-gradient(135deg, #fefefe 0%, #faf5f8 100%);
+            border: 1.5px solid #f0e0e8;
+            border-radius: 14px;
+            padding: 22px;
+            color: #5a4a5a;
+            font-family: 'Quicksand', sans-serif;
+            font-size: 1rem;
+            line-height: 1.7;
+            resize: vertical;
+        }
+
+        .summary-editor:focus {
+            outline: none;
+            border-color: #f8a4c8;
+            background: white;
+            box-shadow: 0 0 0 3px rgba(248,164,200,0.15);
+        }
+
+        .templates-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 14px;
+            margin-bottom: 22px;
+        }
+
+        .template-btn {
+            padding: 22px;
+            background: linear-gradient(135deg, #ffffff 0%, #fff8fa 100%);
+            border: 1.5px solid #f0e0e8;
+            border-radius: 16px;
+            cursor: pointer;
+            text-align: left;
+            transition: all 0.3s ease;
+            color: #5a4a5a;
+        }
+
+        .template-btn:hover {
+            background: linear-gradient(135deg, #fff5f8 0%, #fce8f0 100%);
+            border-color: #f8a4c8;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(248,164,200,0.15);
+        }
+
+        .template-btn h4 {
+            color: #d4698a;
+            margin-bottom: 6px;
+            font-weight: 700;
+        }
+
+        .template-btn p {
+            font-size: 0.82rem;
+            color: #b08aa8;
+        }
+
+        .saved-summaries {
+            margin-top: 30px;
+        }
+
+        .saved-summary-item {
+            background: rgba(255,255,255,0.8);
+            border-radius: 14px;
+            padding: 18px;
+            margin-bottom: 12px;
+            border: 1.5px solid #f0e0e8;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s;
+        }
+
+        .saved-summary-item:hover {
+            border-color: #f8a4c8;
+            box-shadow: 0 4px 15px rgba(248,164,200,0.1);
+        }
+
+        .saved-summary-item h4 {
+            color: #d4698a;
+            font-weight: 700;
+        }
+
+        .saved-summary-item p {
+            font-size: 0.82rem;
+            color: #b08aa8;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 10px;
+            background: #f0e0e8;
+            border-radius: 10px;
+            margin-bottom: 22px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #f8a4c8, #e8d5f5, #f8a4c8);
+            background-size: 200% 100%;
+            animation: shimmer 2s ease-in-out infinite;
+            border-radius: 10px;
+            transition: width 0.4s ease;
+        }
+
+        @keyframes shimmer {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        .topic-selector {
+            margin-bottom: 22px;
+        }
+
+        .topic-selector select {
+            width: 100%;
+            max-width: 400px;
+            padding: 14px 18px;
+            background: white;
+            border: 1.5px solid #f0e0e8;
+            border-radius: 50px;
+            color: #5a4a5a;
+            font-size: 0.95rem;
+            font-family: 'Quicksand', sans-serif;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23f8a4c8' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 18px center;
+        }
+
+        .topic-selector select:focus {
+            outline: none;
+            border-color: #f8a4c8;
+            box-shadow: 0 0 0 3px rgba(248,164,200,0.15);
+        }
+
+        .topic-selector select option {
+            background: white;
+            color: #5a4a5a;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: #b08aa8;
+        }
+
+        .empty-state h3 {
+            color: #d4698a;
+            margin-bottom: 15px;
+        }
+
+        /* My Melody decorative elements */
+        .my-melody-decoration {
+            position: relative;
+        }
+
+        .my-melody-decoration::before {
+            content: '\2661';
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            font-size: 1.2rem;
+            color: #f8a4c8;
+            opacity: 0.4;
+            animation: floatHeart 3s ease-in-out infinite;
+        }
+
+        @keyframes floatHeart {
+            0%, 100% { transform: translateY(0) rotate(0deg); opacity: 0.4; }
+            50% { transform: translateY(-8px) rotate(10deg); opacity: 0.7; }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.3rem;
+                letter-spacing: 2px;
+            }
+
+    .header-melody-img {
+        width: 90px;
+        height: 90px;
+    }
+
+            .nav-tabs {
+                gap: 8px;
+            }
+
+            .nav-tab {
+                width: 100%;
+                max-width: 280px;
+                text-align: center;
+                padding: 10px 20px;
+                font-size: 0.9rem;
+            }
+
+            .stats {
+                gap: 10px;
+            }
+
+            .stat-item {
+                min-width: 80px;
+                padding: 12px 16px;
+            }
+
+            .stat-value {
+                font-size: 1.5rem;
+            }
+
+            .card {
+                padding: 20px;
+                border-radius: 16px;
+            }
+
+            .topic-list {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <img src="my-melody.png" alt="My Melody" class="header-melody-img">
+        <h1>Derecho Procesal Mercantil</h1>
+        <p>Plataforma de Estudio Interactivo</p>
+    </div>
+
+    <div class="nav-tabs">
+        <div class="nav-tab active" onclick="showSection('temario')">&#x1F338; Temario</div>
+        <div class="nav-tab" onclick="showSection('estudio')">&#x1F4D6; Estudio</div>
+        <div class="nav-tab" onclick="showSection('quiz')">&#x2728; Quiz</div>
+        <div class="nav-tab" onclick="showSection('resumenes')">&#x1F4DD; Resúmenes</div>
+    </div>
+
+    <div class="container">
+        <!-- SECCIÓN TEMARIO -->
+        <div id="temario" class="section active">
+            <div class="card">
+                <h2>Contenido Temático</h2>
+                <p>Haz clic en un tema para ver su contenido detallado.</p>
+            </div>
+
+            <div class="topic-list" id="topicList"></div>
+
+            <div id="topicDetail" class="card hidden">
+                <h2 id="topicTitle"></h2>
+                <div id="topicContent"></div>
+                <button class="btn btn-secondary" onclick="hideTopicDetail()" style="margin-top: 20px;">← Volver al temario</button>
+            </div>
+        </div>
+
+        <!-- SECCIÓN ESTUDIO -->
+        <div id="estudio" class="section">
+            <div class="card">
+                <h2>Modo Estudio</h2>
+                <p>Selecciona un tema y repasa sus conceptos clave.</p>
+            </div>
+
+            <div class="topic-selector">
+                <select id="studyTopicSelect" onchange="loadStudyTopic()">
+                    <option value="">-- Selecciona un tema --</option>
+                </select>
+            </div>
+
+            <div id="studyContent" class="card hidden">
+                <h2 id="studyTitle"></h2>
+                <div id="studyBody"></div>
+            </div>
+        </div>
+
+        <!-- SECCIÓN QUIZ -->
+        <div id="quiz" class="section">
+            <div class="quiz-container">
+                <div class="stats">
+                    <div class="stat-item">
+                        <div class="stat-value" id="scoreDisplay">0</div>
+                        <div class="stat-label">Puntuación</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value" id="questionNum">1</div>
+                        <div class="stat-label">Pregunta</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value" id="totalQuestions">0</div>
+                        <div class="stat-label">Total</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value" id="correctCount">0</div>
+                        <div class="stat-label">Correctas</div>
+                    </div>
+                </div>
+
+                <div class="topic-selector">
+                    <select id="quizTopicSelect" onchange="loadQuiz()">
+                        <option value="">-- Selecciona un tema --</option>
+                    </select>
+                </div>
+
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill" style="width: 0%"></div>
+                </div>
+
+                <div class="question-card" id="questionCard">
+                    <div class="question-number" id="questionNumber">Pregunta 1 de 10</div>
+                    <div class="question-text" id="questionText">Selecciona un tema para comenzar el quiz</div>
+                    <div class="options" id="optionsContainer"></div>
+                    <div class="feedback" id="feedback">
+                        <h4 id="feedbackTitle"></h4>
+                        <p id="feedbackText"></p>
+                    </div>
+                </div>
+
+                <div style="text-align: center; margin-top: 20px;">
+                    <button class="btn btn-primary" id="nextBtn" onclick="nextQuestion()" style="display: none;">Siguiente Pregunta →</button>
+                    <button class="btn btn-primary" id="newQuizBtn" onclick="loadQuiz()" style="display: none;">Nuevo Quiz</button>
+                    <button class="btn btn-secondary" id="resetBtn" onclick="resetQuiz()" style="display: none;">Reiniciar Estadísticas</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECCIÓN RESÚMENES -->
+        <div id="resumenes" class="section">
+            <div class="card">
+                <h2>Crear Resumen</h2>
+                <p>Utiliza las plantillas o escribe tu propio resumen del tema.</p>
+            </div>
+
+            <div class="topic-selector">
+                <select id="summaryTopicSelect" onchange="loadSummaryTemplate()">
+                    <option value="">-- Selecciona un tema --</option>
+                </select>
+            </div>
+
+            <div class="templates-grid">
+                <div class="template-btn" onclick="loadTemplate('general')">
+                    <h4>Resumen General</h4>
+                    <p>Estructura básica con conceptos principales</p>
+                </div>
+                <div class="template-btn" onclick="loadTemplate('definiciones')">
+                    <h4>Definiciones Clave</h4>
+                    <p>Lista de definiciones y conceptos importantes</p>
+                </div>
+                <div class="template-btn" onclick="loadTemplate('comparativa')">
+                    <h4>Tabla Comparativa</h4>
+                    <p>Compara conceptos similares</p>
+                </div>
+                <div class="template-btn" onclick="loadTemplate('pasos')">
+                    <h4>Pasos y Procedimientos</h4>
+                    <p>Secuencia de pasos para procesos</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>Nombre del resumen:</h3>
+                <input type="text" id="summaryName" placeholder="Ej: Resumen Capítulo I" style="width: 100%; padding: 14px 18px; background: white; border: 1.5px solid #f0e0e8; border-radius: 50px; color: #5a4a5a; font-size: 0.95rem; font-family: 'Quicksand', sans-serif; margin-bottom: 15px;">
+                <textarea class="summary-editor" id="summaryEditor" placeholder="Escribe tu resumen aquí..."></textarea>
+                <div style="margin-top: 15px;">
+                    <button class="btn btn-primary" onclick="saveSummary()">Guardar Resumen</button>
+                    <button class="btn btn-secondary" onclick="clearSummary()">Limpiar</button>
+                    <button class="btn btn-secondary" onclick="exportSummary()">Exportar TXT</button>
+                </div>
+            </div>
+
+            <div class="saved-summaries">
+                <h2 style="color: #d4698a; margin-bottom: 15px;">Resúmenes Guardados</h2>
+                <div id="savedSummariesList"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ============================================================
+        // DATOS DEL TEMARIO
+        // ============================================================
+        const topicsData = [
+            {
+                id: 1,
+                title: "I. Consideraciones preliminares",
+                sections: [
+                    {
+                        subtitle: "1.1 Antecedentes",
+                        content: `
+                            <h3>1.1.1 El comercio en México</h3>
+                            <p>El comercio en México tiene sus raíces en las civilizaciones prehispánicas donde se realizaban trueques y intercambios. Con la llegada de los españoles se implantó un sistema mercantil basado en el Derecho Español. Posteriormente, con la Independencia, se begin a desarrollar leyes propias mercantiles.</p>
+                            <ul>
+                                <li>Época prehispánica: trueque y mercados (tianguis)</li>
+                                <li>Época colonial: implantación del Derecho Español</li>
+                                <li>Siglo XIX: primeras leyes mercantiles propias</li>
+                                <li>Creación del Código de Comercio en 1889</li>
+                            </ul>
+                            <h3>1.1.2 Práctica mercantil</h3>
+                            <p>La práctica mercantil se refiere al conjunto de actos y operaciones que realizan los comerciantes en el ejercicio de su actividad profesional. Incluye la compraventa, el transporte, el seguro, el contrato mercantil y demás actos regulados por el Código de Comercio.</p>
+                            <ul>
+                                <li>Actos de comercio realizados habitualmente</li>
+                                <li>Sujetos: comerciantes personas físicas y morales</li>
+                                <li>Regulación: Código de Comercio y leyes especiales</li>
+                            </ul>
+                        `
+                    },
+                    {
+                        subtitle: "1.2 Generalidades",
+                        content: `
+                            <h3>1.2.1 Concepto de juicio mercantil</h3>
+                            <p>El juicio mercantil es el conjunto de actos procesales que se desarrollan ante un tribunal mercantil para resolver controversias derivadas de actos de comercio. Es el medio jurídico para hacer valer derechos y obligaciones en materia mercantil.</p>
+                            <ul>
+                                <li>Es un proceso judicial ante tribunales especializados</li>
+                                <li>Resuelve controversias entre comerciantes</li>
+                                <li>Se rige por el Código de Comercio y la Ley Orgánica de los Tribunales Federales</li>
+                            </ul>
+                            <h3>1.2.2 Actos de comercio</h3>
+                            <p>Son actos de comercio los realizados por comerciantes en el ejercicio de su actividad profesional, y los que la ley declara como tales. El artículo 75 del Código de Comercio enumera los actos de comercio.</p>
+                            <ul>
+                                <li>Compraventa de bienes muebles con ánimo de lucro</li>
+                                <li>Operaciones de banca y cambio</li>
+                                <li>Contratos de transporte</li>
+                                <li>Contratos de seguro</li>
+                                <li>Actos auxiliares del comercio</li>
+                            </ul>
+                            <h3>1.2.3 Principios procesales</h3>
+                            <p>Los principios procesales mercantiles son las bases fundamentales que rigen los juicios mercantiles. Incluyen:</p>
+                            <ul>
+                                <li><strong>Principio de oralidad:</strong> Las audiencias son predominantemente orales</li>
+                                <li><strong>Principio de celeridad:</strong> Los procedimientos deben ser rápidos</li>
+                                <li><strong>Principio de economía procesal:</strong> Se buscan mecanismos eficientes</li>
+                                <li><strong>Principio de concentración:</strong> Los actos se concentran en audiencias</li>
+                                <li><strong>Principio de publicidad:</strong> Los actos son públicos</li>
+                                <li><strong>Principio de lealtad procesal:</strong> Las partes deben actuar de buena fe</li>
+                            </ul>
+                            <h3>1.2.4 Fuentes del derecho mercantil</h3>
+                            <ul>
+                                <li><strong>Código de Comercio:</strong> Ley principal que regula las relaciones mercantiles</li>
+                                <li><strong>Constitución Política:</strong> Base fundamental del ordenamiento jurídico</li>
+                                <li><strong>Leyes especiales:</strong> Ley General de Sociedades Mercantiles, Ley de Títulos y Operaciones de Crédito, etc.</li>
+                                <li><strong>Tratados internacionales:</strong> Convenios y acuerdos comerciales</li>
+                                <li><strong>La costumbre:</strong> Práctica aceptada en el comercio</li>
+                                <li><strong>La jurisprudencia:</strong> Tesis de los tribunales</li>
+                            </ul>
+                        `
+                    },
+                    {
+                        subtitle: "1.3 Partes y conceptos",
+                        content: `
+                            <h3>1.3.1 Sujetos de derecho mercantiles</h3>
+                            <p>Los sujetos de derecho mercantil son las personas que pueden ser titulares de derechos y obligaciones en materia mercantil.</p>
+                            <ul>
+                                <li><strong>Comerciantes personas físicas:</strong> Personas que realizan actos de comercio de manera habitual</li>
+                                <li><strong>Comerciantes personas morales:</strong> Sociedades mercantiles constituidas conforme a la ley</li>
+                                <li><strong>No comerciantes:</strong> Personas que realizan actos de comercio de manera accidental</li>
+                            </ul>
+                            <h3>1.3.2 Personalidad de los litigantes</h3>
+                            <p>La personalidad se refiere a la capacidad legal para ser parte en un juicio. En materia mercantil se requiere:</p>
+                            <ul>
+                                <li>Tener capacidad legal para contradecir en juicio</li>
+                                <li>Acreditar personalidad mediante escritura pública o poder notarial</li>
+                                <li>Los representantes legales deben acreditar su calidad</li>
+                                <li>Las personas morales actúan a través de sus representantes</li>
+                            </ul>
+                        `
+                    },
+                    {
+                        subtitle: "1.4 Autoridad en materia mercantil",
+                        content: `
+                            <h3>1.4.1 ¿Quiénes son las autoridades?</h3>
+                            <p>Las autoridades en materia mercantil son los tribunales y funcionarios competentes para conocer y resolver controversias mercantiles.</p>
+                            <ul>
+                                <li><strong>Tribunales Colegiados de Circuito:</strong> Conocen de amparos y apelaciones</li>
+                                <li><strong>Juzgados de Distrito:</strong> Primera instancia en materia federal</li>
+                                <li><strong>Tribunales Colegiados de Circuito en Materia Administrativa:</strong> Controversias con entidades administrativas</li>
+                            </ul>
+                            <h3>1.4.2 Competencia de las autoridades</h3>
+                            <p>La competencia es la porción de jurisdicción asignada a cada tribunal. Se determina por:</p>
+                            <ul>
+                                <li><strong>Materia:</strong> Naturaleza del asunto (mercantil)</li>
+                                <li><strong>Territorio:</strong> Lugar donde debe prestarse la obligación</li>
+                                <li><strong>Cuantía:</strong> Valor económico del asunto</li>
+                                <li><strong>Grado:</strong> Instancia del tribunal</li>
+                            </ul>
+                            <h3>1.4.3 Clases de competencia</h3>
+                            <ul>
+                                <li><strong>Competencia originaria:</strong> La que tiene el tribunal desde el inicio</li>
+                                <li><strong>Competencia derivada:</strong> La que se adquiere por acumulación o conexidad</li>
+                                <li><strong>Competencia contenciosa:</strong> Cuando las partes discuten sobre ella</li>
+                                <li><strong>Competencia no contenciosa:</strong> Cuando no hay controversia sobre ella</li>
+                            </ul>
+                            <h3>1.4.4 De los juzgadores</h3>
+                            <ul>
+                                <li>Deben ser imparciales e independientes</li>
+                                <li>Tienen obligación de resolver conforme a derecho</li>
+                                <li>Están sujetos a responsabilidad por sus resoluciones</li>
+                                <li>Deben conocer las leyes y principios del derecho mercantil</li>
+                            </ul>
+                        `
+                    }
+                ]
+            },
+            {
+                id: 2,
+                title: "II. Procedimiento mercantil en general",
+                sections: [
+                    {
+                        subtitle: "2.1 Formalidades Judiciales",
+                        content: `
+                            <h3>2.1.1 Actos procesales</h3>
+                            <p>Los actos procesales son las manifestaciones de voluntad de los sujetos del proceso que producen efectos jurídicos dentro del juicio.</p>
+                            <ul>
+                                <li><strong>Requisitos de validez:</strong> Capacidad, legitimación, y observancia de formalidades</li>
+                                <li><strong>Forma de los actos:</strong> Escrita u oral según el tipo de juicio</li>
+                                <li><strong>Medios de impugnación:</strong> Recursos contra actos procesales</li>
+                            </ul>
+                            <h3>2.1.2 Actos judiciales</h3>
+                            <p>Son resoluciones dictadas por el juez en el ejercicio de su función jurisdiccional.</p>
+                            <ul>
+                                <li><strong>Autos:</strong> Resoluciones que decide cuestiones incidentales</li>
+                                <li><strong>Decretos:</strong> Resoluciones de mero impulso procesal</li>
+                                <li><strong>Sentencias:</strong> Resoluciones que deciden el fondo del asunto</li>
+                            </ul>
+                            <h3>2.1.3 Supletoriedad de la ley</h3>
+                            <p>En materia mercantil, el Código de Comercio es supletorio del Código Civil Federal. Esto significa que cuando el Código de Comercio no regule un aspecto específico, se aplicarán las disposiciones del Código Civil.</p>
+                            <ul>
+                                <li>Primera fuente: Código de Comercio</li>
+                                <li>Segunda fuente: Código Civil Federal (supletorio)</li>
+                                <li>Aplicación solo en defecto de regulación mercantil específica</li>
+                            </ul>
+                            <h3>2.1.4 Alcance de la condena</h3>
+                            <p>La sentencia debe contener una condena precisa que determine las obligaciones del vencido. Incluye:</p>
+                            <ul>
+                                <li>Condena al pago de cantidad líquida o ilíquida</li>
+                                <li>Condena a hacer o no hacer algo</li>
+                                <li>Condena al pago de daños y perjuicios</li>
+                                <li>Costas y gastos del juicio</li>
+                            </ul>
+                            <h3>2.1.5 Costas</h3>
+                            <p>Las costas son los gastos que se originan en la tramitación del juicio. Comprenden:</p>
+                            <ul>
+                                <li>Honorarios de abogados (derecho de pleito)</li>
+                                <li>Gastos judiciales (peritajes, diligencias)</li>
+                                <li>Derechos de expedición de copias</li>
+                                <li>Pagos a testigos y peritos</li>
+                            </ul>
+                        `
+                    },
+                    {
+                        subtitle: "2.2 Notificaciones y términos judiciales",
+                        content: `
+                            <h3>2.2.1 Concepto de notificación</h3>
+                            <p>La notificación es el acto procesal mediante el cual se hace saber a las partes las resoluciones judiciales. Es un requisito esencial para garantizar el derecho de defensa.</p>
+                            <ul>
+                                <li><strong>Personal:</strong> Se entrega directamente al interesado</li>
+                                <li><strong>Por cédula:</strong> Se deja en el domicilio con personas del lugar</li>
+                                <li><strong>Por estrados:</strong> Se publica en tableros del juzgado</li>
+                                <li><strong>Por publicación:</strong> Se publica en medios de difusión</li>
+                            </ul>
+                            <h3>2.2.2 Clases de términos</h3>
+                            <p>Los términos judiciales son los plazos dentro de los cuales deben realizarse los actos procesales.</p>
+                            <ul>
+                                <li><strong>Perentorios:</strong> De cumplimiento obligatorio, no admiten prórroga</li>
+                                <li><strong>Prorrogables:</strong> Pueden ser extendidos por el juez</li>
+                                <li><strong>Improrrogables:</strong> No pueden ser extendidos bajo ninguna circunstancia</li>
+                                <li><strong>Fatales:</strong> Cuya violación causa la caducidad de la acción</li>
+                            </ul>
+                            <h3>2.2.3 Computo de términos</h3>
+                            <ul>
+                                <li>Los términos se computan desde el día siguiente de la notificación</li>
+                                <li>Se excluye el día del vencimiento</li>
+                                <li>Los términos en horas se computan de hora en hora</li>
+                                <li>Los días inhábiles no se computan</li>
+                            </ul>
+                        `
+                    }
+                ]
+            },
+            {
+                id: 3,
+                title: "III. Medios preparatorios del juicio",
+                sections: [
+                    {
+                        subtitle: "3.1 Medios preparatorios y providencias precautorias",
+                        content: `
+                            <h3>3.1.1 Casos en los que proceden</h3>
+                            <p>Los medios preparatorios son actos previos al juicio que tienen por objeto preparar la demanda, ya sea proporcionando información o asegurando la efectividad de la sentencia.</p>
+                            <ul>
+                                <li>Cuando se desconozca al demandado</li>
+                                <li>Cuando exista riesgo de que se oculten bienes</li>
+                                <li>Cuando sea necesario determinar la calidad de heredero</li>
+                                <li>Cuando se requiera exhibición de documentos</li>
+                            </ul>
+                            <h3>3.1.2 Personas contra las que proceden</h3>
+                            <ul>
+                                <li>Contra la persona que se pretende demandar</li>
+                                <li>Contra los posibles responsables solidarios</li>
+                                <li>Contra los obligados de manera solidaria</li>
+                            </ul>
+                            <h3>3.1.3 Oportunidad procesal. Requisitos</h3>
+                            <ul>
+                                <li>Deben solicitarse antes de la demanda</li>
+                                <li>Se requiere justificación de la necesidad</li>
+                                <li>El juez debe valorar la procedencia</li>
+                                <li>Se debe ofrecer garantía suficiente</li>
+                            </ul>
+                        `
+                    },
+                    {
+                        subtitle: "3.2 Medios",
+                        content: `
+                            <h3>3.2.1 Declaración del demandado</h3>
+                            <p>Es el medio preparatorio más utilizado. Consiste en la comparecencia del demandado ante el juez para que bajo protesta de decir verdad proporcione información relevante para la demanda.</p>
+                            <ul>
+                                <li>Se practica antes de la demanda</li>
+                                <li>El demandado está obligado a concurrir</li>
+                                <li>Debe ser requerida con al menos 3 días de anticipación</li>
+                                <li>Se levanta acta de la declaración</li>
+                            </ul>
+                            <h3>3.2.2 Declaración de testigos</h3>
+                            <ul>
+                                <li>Se practican cuando los testigos son de edad avanzada o están enfermos</li>
+                                <li>Se admiten excepcionalmente</li>
+                                <li>Se siguen las reglas de la prueba testimonial</li>
+                            </ul>
+                            <h3>3.2.3 Secuestro y arraigo</h3>
+                            <p><strong>Secuestro judicial:</strong> Aseguramiento de bienes muebles del demandado para garantizar la efectividad de la sentencia.</p>
+                            <ul>
+                                <li>Procede cuando existe riesgo de que se oculten bienes</li>
+                                <li>Se requiere fianza o depósito como garantía</li>
+                                <li>El actuario levanta inventario de los bienes</li>
+                            </ul>
+                            <p><strong>Arraigo:</strong> Medida que impide al demandado ausentarse del lugar del juicio sin autorización del juez.</p>
+                            <ul>
+                                <li>Se anota en el pasaporte del demandado</li>
+                                <li>Procede cuando existe riesgo de fuga</li>
+                                <li>Se levanta cuando se cauciona la demanda</li>
+                            </ul>
+                        `
+                    }
+                ]
+            },
+            {
+                id: 4,
+                title: "IV. Juicios mercantiles",
+                sections: [
+                    {
+                        subtitle: "4.1 Juicio ordinario mercantil",
+                        content: `
+                            <h3>4.1.1 Demanda: acciones</h3>
+                            <p>El juicio ordinario mercantil es el procedimiento más completo y se utiliza cuando no existe un procedimiento específico para el tipo de controversia.</p>
+                            <ul>
+                                <li><strong>Acción personal:</strong> Derivada de obligaciones personales</li>
+                                <li><strong>Acción real:</strong> Reivindicatoria o de propiedad</li>
+                                <li><strong>Acción cambiaria:</strong> Derivada de títulos de crédito</li>
+                            </ul>
+                            <h3>4.1.2 Contestación: excepciones y defensas</h3>
+                            <ul>
+                                <li>El demandado puede oponer excepciones procesales</li>
+                                <li>Puede contestar negando los hechos</li>
+                                <li>Puede ofrecer pruebas en su favor</li>
+                                <li>Puede reconvenir al actor</li>
+                            </ul>
+                            <h3>4.1.3 Pruebas</h3>
+                            <ul>
+                                <li>El término probatorio es de 40 días</li>
+                                <li>Se admiten todos los medios de prueba</li>
+                                <li>Se desahogan en audiencia de pruebas</li>
+                            </ul>
+                            <h3>4.1.4 Alegatos y sentencia</h3>
+                            <ul>
+                                <li>Las partes presentan alegatos en audiencia</li>
+                                <li>La sentencia debe ser fundada y motivada</li>
+                                <li>El juez tiene 10 días para dictar sentencia</li>
+                            </ul>
+                        `
+                    },
+                    {
+                        subtitle: "4.2 Juicio ejecutivo mercantil",
+                        content: `
+                            <h3>4.2.1 Demanda</h3>
+                            <p>El juicio ejecutivo procede cuando se tiene un título de crédito que genera obligación de pago. El título debe ser:</p>
+                            <ul>
+                                <li>Exigible (vencido y no pagado)</li>
+                                <li>Que conste en título de crédito o ejecutivo</li>
+                                <li>Que la obligación esté contenida en documento auténtico</li>
+                            </ul>
+                            <h3>4.2.2 Contestación y excepciones</h3>
+                            <ul>
+                                <li>El demandado puede oponer excepciones dentro de 3 días</li>
+                                <li>Las excepciones son taxativas (las que la ley señala)</li>
+                                <li>No admite contestación de hechos</li>
+                            </ul>
+                            <h3>4.2.3 Pruebas y desahogo</h3>
+                            <ul>
+                                <li>Solo se admiten pruebas documentales</li>
+                                <li>Se desahogan en audiencia única</li>
+                                <li>El juez valora las excepciones opuestas</li>
+                            </ul>
+                            <h3>4.2.4 Alegatos y sentencia</h3>
+                            <ul>
+                                <li>Las partes alegan en audiencia</li>
+                                <li>Si no hay excepciones, se dicta sentencia de remate</li>
+                                <li>Si se admite excepción, se sobresee la ejecución</li>
+                            </ul>
+                        `
+                    },
+                    {
+                        subtitle: "4.3 Juicio oral mercantil",
+                        content: `
+                            <h3>4.3.1 Demanda y fijación de la litis</h3>
+                            <p>El juicio oral mercantil es un procedimiento breve y concentrado. Se interpone demanda y el juez fija los puntos de controversia.</p>
+                            <ul>
+                                <li>Se presenta demanda ante el juez</li>
+                                <li>El juez fija la litis (puntos controvertidos)</li>
+                                <li>Se notifica al demandado</li>
+                            </ul>
+                            <h3>4.3.2 Audiencia preliminar</h3>
+                            <ul>
+                                <li>Se celebra dentro de los 10 días siguientes a la notificación</li>
+                                <li>Se intenta la conciliación</li>
+                                <li>Se precisan los puntos de prueba</li>
+                                <li>Se proponen las pruebas</li>
+                            </ul>
+                            <h3>4.3.3 Audiencia de juicio</h3>
+                            <ul>
+                                <li>Se celebra dentro de los 15 días siguientes</li>
+                                <li>Desahogo de pruebas de forma oral</li>
+                                <li>Alegatos de las partes</li>
+                                <li>Citación para sentencia</li>
+                            </ul>
+                        `
+                    }
+                ]
+            },
+            {
+                id: 5,
+                title: "V. Etapa expositiva",
+                sections: [
+                    {
+                        subtitle: "5.1 Acciones",
+                        content: `
+                            <h3>5.1.1 Procedencia</h3>
+                            <p>Las acciones son los medios legales para hacer valer un derecho ante un tribunal. Proceden cuando existe una lesión actual o inminente a un derecho subjetivo.</p>
+                            <ul>
+                                <li>Legitimación activa del actor</li>
+                                <li>Interés jurídico actual</li>
+                                <li>No existir cosa juzgada</li>
+                                <li>No existir prescripción</li>
+                            </ul>
+                            <h3>5.1.2 Acciones a promover</h3>
+                            <ul>
+                                <li><strong>Acción personal:</strong> Derivada de contratos u obligaciones</li>
+                                <li><strong>Acción real:</strong> Sobre bienes inmuebles o muebles determinados</li>
+                                <li><strong>Acción cambiaria:</strong> Derivada de títulos de crédito</li>
+                                <li><strong>Acción hipotecaria:</strong> Derivada de garantía hipotecaria</li>
+                            </ul>
+                            <h3>5.1.3 Términos del juicio</h3>
+                            <ul>
+                                <li>Ordinario: según la cuantía y materia</li>
+                                <li>Ejecutivo: más breve por ser ejecución de título</li>
+                                <li>Oral: el más breve de todos</li>
+                            </ul>
+                        `
+                    },
+                    {
+                        subtitle: "5.2 Redacción de la demanda",
+                        content: `
+                            <h3>5.2.1 Elementos de los escritos</h3>
+                            <ul>
+                                <li>Nombre y firma del promovente</li>
+                                <li>Nombre del abogado patrocinante</li>
+                                <li>El escrito debe ser claro y preciso</li>
+                                <li>Debe contener hechos, derecho y petición</li>
+                            </ul>
+                            <h3>5.2.2 Estructura de la demanda</h3>
+                            <ul>
+                                <li><strong>Encabezado:</strong> Datos del actor, demandado y abogado</li>
+                                <li><strong>Hechos:</strong> Narración de los acontecimientos</li>
+                                <li><strong>Fundamentos de derecho:</strong> Artículos y principios aplicables</li>
+                                <li><strong>Preciso:</strong> Lo que se solicita al juzgador</li>
+                                <li><strong>Pruebas:</strong> Ofrecimiento de medios probatorios</li>
+                                <li><strong>Firma:</strong> Del abogado y del actor</li>
+                            </ul>
+                        `
+                    },
+                    {
+                        subtitle: "5.3 Notificación",
+                        content: `
+                            <h3>5.3.1 Concepto</h3>
+                            <p>La notificación en la etapa expositiva es el acto por el cual se hace saber al demandado la existencia del juicio y los términos de la demanda.</p>
+                            <ul>
+                                <li>Personal al demandado</li>
+                                <li>Por cédula en domicilio</li>
+                                <li>En los estrados del juzgado</li>
+                            </ul>
+                            <h3>5.3.2 Eventualidades</h3>
+                            <ul>
+                                <li>Error en la notificación</li>
+                                <li>Que el demandado se halle ausente</li>
+                                <li>Que el domicilio señalado sea incorrecto</li>
+                            </ul>
+                            <h3>5.3.3 Traslado</h3>
+                            <p>El traslado es el plazo que se concede al demandado para que conteste la demanda.</p>
+                            <ul>
+                                <li>En juicio ordinario: 15 días</li>
+                                <li>En juicio ejecutivo: 3 días</li>
+                                <li>En juicio oral: 5 días</li>
+                            </ul>
+                        `
+                    },
+                    {
+                        subtitle: "5.4 Contestación de la demanda",
+                        content: `
+                            <h3>5.4.1 Concepto</h3>
+                            <p>La contestación es el acto procesal mediante el cual el demandado ejerce su derecho de defensa frente a las pretensiones del actor.</p>
+                            <ul>
+                                <li>Debe ser expresa y clara</li>
+                                <li>Debe referirse a cada uno de los hechos</li>
+                                <li>Puede ser positiva o negativa</li>
+                            </ul>
+                            <h3>5.4.2 Términos</h3>
+                            <ul>
+                                <li>Ordinario: 15 días</li>
+                                <li>Ejecutivo: 3 días</li>
+                                <li>Oral: 5 días</li>
+                            </ul>
+                        `
+                    },
+                    {
+                        subtitle: "5.5 Excepciones y defensas",
+                        content: `
+                            <h3>5.5.1 Impedimentos, excusas y recusas</h3>
+                            <ul>
+                                <li><strong>Impedimento:</strong> Causa que impide al juez conocer del asunto</li>
+                                <li><strong>Excusa:</strong> Renuncia voluntaria del juez a conocer</li>
+                                <li><strong>Recusa:</strong> Solicitud de apartamiento del juez por las partes</li>
+                            </ul>
+                            <h3>5.5.2 Excepciones dilatorias</h3>
+                            <p>Son aquellas que impiden momentáneamente la prosecución del juicio.</p>
+                            <ul>
+                                <li>Incompetencia</li>
+                                <li>Personalidad</li>
+                                <li>Falta de personalidad</li>
+                                <li>Litispendencia</li>
+                                <li>Cosa juzgada</li>
+                                <li>Prescripción</li>
+                                <li>Oscuridad o ambigüedad en el modo de proponer la demanda</li>
+                            </ul>
+                            <h3>5.5.3 Excepciones perentorias</h3>
+                            <p>Son aquellas que extinguen la acción del actor.</p>
+                            <ul>
+                                <li>Pago</li>
+                                <li>Compensación</li>
+                                <li>Condonación</li>
+                                <li>Confusión</li>
+                                <li>Novación</li>
+                                <li>Resolución</li>
+                                <li>Nulidad</li>
+                            </ul>
+                        `
+                    },
+                    {
+                        subtitle: "5.6 Incidentes y tercerías",
+                        content: `
+                            <h3>5.6.1 Conceptos</h3>
+                            <ul>
+                                <li><strong>Incidente:</strong> Cuestión accesoria que surge durante el juicio</li>
+                                <li><strong>Tercería:</strong> Intervención de un tercero en el juicio</li>
+                            </ul>
+                            <h3>5.6.2 Diferencias</h3>
+                            <ul>
+                                <li>Los incidentes surgen entre las partes originales</li>
+                                <li>Las tercerías involucran a un tercero</li>
+                                <li>Los incidentes se tramitan en cuaderno separado</li>
+                                <li>Las tercerías pueden ser coadyuvantes o excluyentes</li>
+                            </ul>
+                        `
+                    }
+                ]
+            },
+            {
+                id: 6,
+                title: "VI. Etapa probatoria",
+                sections: [
+                    {
+                        subtitle: "6.1 Pruebas",
+                        content: `
+                            <h3>6.1.1 Carga de la prueba</h3>
+                            <p>La carga de la prueba recae sobre quien afirma un hecho favorable a su derecho.</p>
+                            <ul>
+                                <li>Actor: prueba los hechos en que funda su demanda</li>
+                                <li>Demandado: prueba los hechos impeditivos, modificativos o extintivos</li>
+                                <li>Excepciones al principio: presunciones legales</li>
+                            </ul>
+                            <h3>6.1.2 Objetivo</h3>
+                            <ul>
+                                <li>Demostrar la verdad de los hechos alegados</li>
+                                <li>Convencer al juzgador de la certeza de las afirmaciones</li>
+                                <li>Establecer el derecho de las partes</li>
+                            </ul>
+                            <h3>6.1.3 Apertura del término</h3>
+                            <ul>
+                                <li>El juez declara abierto el período probatorio</li>
+                                <li>Se fija el plazo según el tipo de juicio</li>
+                                <li>Las partes tienen derecho a ofrecer pruebas</li>
+                            </ul>
+                            <h3>6.1.4 Término</h3>
+                            <ul>
+                                <li>Ordinario: 40 días</li>
+                                <li>Ejecutivo: no hay término (solo documental)</li>
+                                <li>Oral: se fija en la audiencia</li>
+                            </ul>
+                            <h3>6.1.5 Prórroga del término</h3>
+                            <ul>
+                                <li>Solo en juicio ordinario</li>
+                                <li>Se solicita antes del vencimiento</li>
+                                <li>El juez puede conceder o negar</li>
+                            </ul>
+                        `
+                    },
+                    {
+                        subtitle: "6.2 Las pruebas",
+                        content: `
+                            <h3>6.2.1 La documental</h3>
+                            <p>Es la que resulta de documentos públicos o privados que demuestren la existencia de hechos o actos jurídicos.</p>
+                            <ul>
+                                <li><strong>Pública:</strong> Otorgada por funcionario público (escrituras, constancias)</li>
+                                <li><strong>Privada:</strong> Otorgada entre particulares (contratos, cartas)</li>
+                                <li><strong>Electrónica:</strong> Documents digitales con firma electrónica</li>
+                            </ul>
+                            <h3>6.2.2 Confesional</h3>
+                            <p>Es la declaración que hace una de las partes bajo protesta de decir verdad.</p>
+                            <ul>
+                                <li><strong>Confesional del actor:</strong> Absolución de posiciones</li>
+                                <li><strong>Confesional del demandado:</strong> Requerimiento de absolución</li>
+                                <li>Se practica en audiencia</li>
+                            </ul>
+                            <h3>6.2.3 Testimonial</h3>
+                            <p>Es la declaración de terceros ajenos al juicio que tienen conocimiento de los hechos.</p>
+                            <ul>
+                                <li>Testigos propuestos por las partes</li>
+                                <li>Deben ser hábiles (no tener impedimentos)</li>
+                                <li>Se desahogan en audiencia</li>
+                                <li>Se tacha a los inhábiles</li>
+                            </ul>
+                            <h3>6.2.4 Pericial</h3>
+                            <p>Es la opinión de expertos sobre cuestiones técnicas.</p>
+                            <ul>
+                                <li>Peritos designados por las partes</li>
+                                <li>Perito oficial designado por el juez</li>
+                                <li>Dictamen pericial</li>
+                            </ul>
+                            <h3>6.2.5 Inspección judicial</h3>
+                            <ul>
+                                <li>El juez visita personalmente el lugar</li>
+                                <li>Observa y examina los hechos</li>
+                                <li>Levanta acta de lo observado</li>
+                            </ul>
+                            <h3>6.2.6 Instrumental de actuaciones</h3>
+                            <ul>
+                                <li>Se refiere a las constancias del propio expediente</li>
+                                <li>No requiere ofrecimiento</li>
+                                <li>El juez la valora directamente</li>
+                            </ul>
+                            <h3>6.2.7 Presunciones</h3>
+                            <ul>
+                                <li><strong>Legales:</strong> Establecidas por la ley (indemostrables)</li>
+                                <li><strong>Judiciales:</strong> Deducidas por el juez (homologables)</li>
+                            </ul>
+                        `
+                    }
+                ]
+            },
+            {
+                id: 7,
+                title: "VII. Etapa conclusiva y medios de impugnación",
+                sections: [
+                    {
+                        subtitle: "7.1 Alegatos",
+                        content: `
+                            <h3>7.1.1 Concepto</h3>
+                            <p>Los alegatos son los argumentos orales o escritos que presentan las partes al juez para convencerlo sobre la justeza de su pretensión.</p>
+                            <ul>
+                                <li>Oportunidad después de la etapa probatoria</li>
+                                <li>Pueden ser orales o escritos</li>
+                                <li>Se refieren a la valoración de las pruebas</li>
+                            </ul>
+                            <h3>7.1.2 Formalidad</h3>
+                            <ul>
+                                <li>En juicio oral: son orales</li>
+                                <li>En juicio ordinario: pueden ser escritos</li>
+                                <li>No constituyen prueba</li>
+                                <li>Son argumentos de las partes</li>
+                            </ul>
+                        `
+                    },
+                    {
+                        subtitle: "7.2 Clasificación de los alegatos",
+                        content: `
+                            <h3>7.2.1 Alegatos del actor</h3>
+                            <ul>
+                                <li>Señalan los hechos probados</li>
+                                <li>Argumentan la procedencia de la acción</li>
+                                <li>Solicitan la sentencia condenatoria</li>
+                                <li>Proponen la condena具体a</li>
+                            </ul>
+                            <h3>7.2.2 Alegatos del demandado</h3>
+                            <ul>
+                                <li>Señalan la ausencia de pruebas en contra</li>
+                                <li>Argumentan las excepciones probadas</li>
+                                <li>Solicitan el sobreseimiento o absolución</li>
+                                <li>Proponen la absolución</li>
+                            </ul>
+                        `
+                    },
+                    {
+                        subtitle: "7.3 Sentencia",
+                        content: `
+                            <h3>7.3.1 Concepto</h3>
+                            <p>La sentencia es la resolución judicial que decide el fondo del asunto. Pone fin al juicio en primera instancia.</p>
+                            <ul>
+                                <li>Debe ser fundada y motivada</li>
+                                <li>Debe pronunciarse sobre cada acción</li>
+                                <li>Decide con base en las pruebas desahogadas</li>
+                            </ul>
+                            <h3>7.3.2 Citación</h3>
+                            <ul>
+                                <li>El juez señala fecha para la audiencia de alegatos</li>
+                                <li>Las partes son citadas con anticipación</li>
+                                <li>En la audiencia se escuchan los alegatos</li>
+                                <li>El juez pronuncia la sentencia</li>
+                            </ul>
+                        `
+                    },
+                    {
+                        subtitle: "7.4 Impugnación",
+                        content: `
+                            <h3>7.4.1 Concepto</h3>
+                            <p>La impugnación es el medio por el cual una parte solicita a un tribunal superior que revise la resolución dictada por un juez inferior.</p>
+                            <ul>
+                                <li>Protege el derecho de defensa</li>
+                                <li>Garantiza la correcta aplicación de la ley</li>
+                                <li>Permite corregir errores</li>
+                            </ul>
+                            <h3>7.4.2 Apelación</h3>
+                            <ul>
+                                <li>Revisión de la sentencia por un tribunal superior</li>
+                                <li>Procede contra sentencias definitivas</li>
+                                <li>Se interpone dentro de los 3 días siguientes a la notificación</li>
+                                <li>Se concede en ambos efectos o solo en el devolutivo</li>
+                            </ul>
+                            <h3>7.4.3 Revocación</h3>
+                            <ul>
+                                <li>Revisión por el mismo juez que la dictó</li>
+                                <li>Procede contra decretos y autos</li>
+                                <li>Se interpone dentro de los 3 días</li>
+                            </ul>
+                            <h3>7.4.4 Reposición</h3>
+                            <ul>
+                                <li>Se solicita al mismo juez para que reconsidere</li>
+                                <li>Procede cuando hay nuevo argumento o prueba</li>
+                                <li>Se interpone dentro de los 3 días</li>
+                            </ul>
+                        `
+                    },
+                    {
+                        subtitle: "7.5 Pregón de remate",
+                        content: `
+                            <h3>7.5.1 Concepto</h3>
+                            <p>El pregón de remate es la publicidad que se da a la venta en pública subasta de bienes embargados.</p>
+                            <ul>
+                                <li>Se publica en el Periódico Oficial</li>
+                                <li>Señala el día, hora y lugar del remate</li>
+                                <li>Describe los bienes a rematar</li>
+                            </ul>
+                            <h3>7.5.2 Avalúo</h3>
+                            <ul>
+                                <li>Se realiza por peritos designados</li>
+                                <li>Fija el valor mínimo de la venta</li>
+                                <li>Las partes pueden impugnar el avalúo</li>
+                            </ul>
+                        `
+                    },
+                    {
+                        subtitle: "7.6 Audiencia de remate",
+                        content: `
+                            <h3>7.6.1 Pujas y repujas</h3>
+                            <ul>
+                                <li>Los postores ofrecen cantidades crecientes</li>
+                                <li>Se inicia con el valor del avalúo</li>
+                                <li>Los postores deben acreditar solvencia</li>
+                            </ul>
+                            <h3>7.6.2 Adjudicación</h3>
+                            <ul>
+                                <li>Se adjudica al mejor postor</li>
+                                <li>Se levanta acta del remate</li>
+                                <li>El adquirente debe cubrir el precio</li>
+                                <li>Si no se paga, se realizan nuevos remates</li>
+                            </ul>
+                        `
+                    }
+                ]
+            }
+        ];
+
+        // ============================================================
+        // PREGUNTAS DEL QUIZ
+        // ============================================================
+        const quizQuestions = {
+            1: [
+                {
+                    question: "¿Cuál es la principal fuente del Derecho Mercantil en México?",
+                    options: ["Código Civil Federal", "Código de Comercio", "Constitución Política", "Ley Orgánica"],
+                    correct: 1,
+                    explanation: "El Código de Comercio es la ley principal que regula las relaciones mercantiles en México."
+                },
+                {
+                    question: "¿Cuáles son los principios procesales del juicio mercantil?",
+                    options: ["Solo oralidad y celeridad", "Oralidad, celeridad, economía procesal, concentración y publicidad", "Solo economía procesal", "Únicamente publicidad"],
+                    correct: 1,
+                    explanation: "Los principios procesales incluyen oralidad, celeridad, economía procesal, concentración, publicidad y lealtad procesal."
+                },
+                {
+                    question: "¿Qué es un acto de comercio según el Código de Comercio?",
+                    options: ["Solo la compraventa", "Todo acto realizado con ánimo de lucro", "Únicamente actos de banca", "Solo contratos de transporte"],
+                    correct: 1,
+                    explanation: "El artículo 75 del Código de Comercio enumera los actos de comercio, que incluyen compraventa, operaciones bancarias, transporte, seguro y otros."
+                },
+                {
+                    question: "¿Cuál es la diferencia entre comerciante persona física y moral?",
+                    options: ["No hay diferencia", "La persona física es individual y la moral es una sociedad", "Solo se refiere al tamaño", "La moral no puede ser comerciante"],
+                    correct: 1,
+                    explanation: "Los comerciantes personas físicas son individuos que realizan actos de comercio, mientras que las morales son sociedades constituidas conforme a la ley."
+                },
+                {
+                    question: "¿Qué principio procesal establece que los juicios deben ser rápidos?",
+                    options: ["Principio de publicidad", "Principio de oralidad", "Principio de celeridad", "Principio de concentración"],
+                    correct: 2,
+                    explanation: "El principio de celeridad establece que los procedimientos mercantiles deben ser rápidos y eficientes."
+                },
+                {
+                    question: "¿Cuál es la fuente supletoria del Derecho Mercantil?",
+                    options: ["Constitución Política", "Código Penal", "Código Civil Federal", "Ley Federal del Trabajo"],
+                    correct: 2,
+                    explanation: "El Código Civil Federal es supletorio del Código de Comercio, aplicándose cuando este último no regule un aspecto específico."
+                },
+                {
+                    question: "¿Qué es la competencia territorial en materia mercantil?",
+                    options: ["La jurisdicción por materia", "El territorio donde debe prestarse la obligación", "La cuantía del asunto", "La instancia del tribunal"],
+                    correct: 1,
+                    explanation: "La competencia territorial se determina por el lugar donde debe prestarse la obligación o donde se encuentra el demandado."
+                },
+                {
+                    question: "¿Quiénes son las autoridades en materia mercantil?",
+                    options: ["Solo los jueces federales", "Tribunales Colegiados y Juzgados de Distrito", "Únicamente los tribunales estatales", "Los árbitros"],
+                    correct: 1,
+                    explanation: "Las autoridades en materia mercantil incluyen Tribunales Colegiados de Circuito y Juzgados de Distrito."
+                },
+                {
+                    question: "¿Qué es la personalidad de los litigantes?",
+                    options: ["El carácter de la persona", "La capacidad legal para ser parte en un juicio", "La representación del abogado", "El domicilio del demandado"],
+                    correct: 1,
+                    explanation: "La personalidad se refiere a la capacidad legal para ser parte en un juicio, que se acredita mediante escritura pública o poder notarial."
+                },
+                {
+                    question: "¿Qué tipo de derecho es el Derecho Mercantil?",
+                    options: ["Derecho Público", "Derecho Privado", "Derecho Penal", "Derecho Internacional"],
+                    correct: 1,
+                    explanation: "El Derecho Mercantil es una rama del Derecho Privado que regula las relaciones entre comerciantes."
+                }
+            ],
+            2: [
+                {
+                    question: "¿Qué es un acto procesal?",
+                    options: ["Una sentencia", "Manifestación de voluntad que produce efectos jurídicos en el proceso", "Un recurso", "Una notificación"],
+                    correct: 1,
+                    explanation: "Los actos procesales son las manifestaciones de voluntad de los sujetos del proceso que producen efectos jurídicos dentro del juicio."
+                },
+                {
+                    question: "¿Cuáles son los tres tipos de resoluciones judiciales?",
+                    options: ["Solo sentencias", "Decretos, autos y sentencias", "Solo autos y decretos", "Notificaciones y cédulas"],
+                    correct: 1,
+                    explanation: "Las resoluciones judiciales son decretos (impulso procesal), autos (cuestiones incidentales) y sentencias (fondo del asunto)."
+                },
+                {
+                    question: "¿Qué significa la supletoriedad del Código de Comercio?",
+                    options: ["Es la ley principal", "El Código Civil se aplica cuando el de Comercio no regula", "No hay supletoriedad", "Se aplican ambas leyes igualmente"],
+                    correct: 1,
+                    explanation: "La supletoriedad significa que el Código Civil Federal se aplica en defecto de regulación específica del Código de Comercio."
+                },
+                {
+                    question: "¿Qué comprenden las costas en un juicio mercantil?",
+                    options: ["Solo honorarios del abogado", "Honorarios, gastos judiciales, derechos y pagos a peritos", "Solo gastos judiciales", "Ninguna de las anteriores"],
+                    correct: 1,
+                    explanation: "Las costas incluyen honorarios de abogados, gastos judiciales, derechos de expedición y pagos a testigos y peritos."
+                },
+                {
+                    question: "¿Cuáles son los tipos de notificaciones?",
+                    options: ["Solo personal", "Personal, por cédula, por estrados y por publicación", "Solo por cédula", "Únicamente electrónica"],
+                    correct: 1,
+                    explanation: "Las notificaciones pueden ser personal, por cédula, por estrados o por publicación según las circunstancias."
+                },
+                {
+                    question: "¿Qué son los términos judiciales?",
+                    options: ["Los días del año", "Plazos para realizar actos procesales", "Las fechas de audiencia", "Los horarios del juzgado"],
+                    correct: 1,
+                    explanation: "Los términos judiciales son los plazos dentro de los cuales deben realizarse los actos procesales."
+                },
+                {
+                    question: "¿Cómo se computan los términos judiciales?",
+                    options: ["Desde el día de la notificación", "Desde el día siguiente de la notificación", "Desde la presentación de la demanda", "Desde la sentencia"],
+                    correct: 1,
+                    explanation: "Los términos se computan desde el día siguiente de la notificación, excluyendo el día del vencimiento."
+                },
+                {
+                    question: "¿Qué es un término perentorio?",
+                    options: ["Uno que se puede prorrogar", "De cumplimiento obligatorio sin prórroga", "Un término indefinido", "Un plazo voluntario"],
+                    correct: 1,
+                    explanation: "Los términos perentorios son de cumplimiento obligatorio y no admiten prórroga."
+                },
+                {
+                    question: "¿Qué es la condena en una sentencia?",
+                    options: ["El castigo penal", "Determinación de obligaciones del vencido", "La multa impuesta", "El arresto"],
+                    correct: 1,
+                    explanation: "La condena es la determinación de las obligaciones del vencido, que puede ser al pago, a hacer o no hacer algo."
+                },
+                {
+                    question: "¿Cuándo son inhábiles los días en el cómputo de términos?",
+                    options: ["Nunca", "Cuando caen en fines de semana o días festivos", "Solo fines de semana", "Solo días festivos"],
+                    correct: 1,
+                    explanation: "Los días inhábiles son aquellos que caen en días de descanso obligatorio o días festivos, y no se computan en los términos."
+                }
+            ],
+            3: [
+                {
+                    question: "¿Qué son los medios preparatorios del juicio?",
+                    options: ["Actos durante el juicio", "Actos previos al juicio para preparar la demanda", "Recursos contra la sentencia", "Medios de prueba"],
+                    correct: 1,
+                    explanation: "Los medios preparatorios son actos previos al juicio que tienen por objeto preparar la demanda."
+                },
+                {
+                    question: "¿Cuándo procede la declaración del demandado como medio preparatorio?",
+                    options: ["Solo después del juicio", "Cuando se desconozca al demandado o se necesite información", "Nunca", "Solo en juicio ejecutivo"],
+                    correct: 1,
+                    explanation: "Procede cuando se desconozca al demandado, exista riesgo de que se oculten bienes o sea necesario determinar la calidad de heredero."
+                },
+                {
+                    question: "¿Qué es el secuestro judicial?",
+                    options: ["Detención del demandado", "Aseguramiento de bienes muebles para garantizar la sentencia", "Confiscación de bienes", "Arresto domiciliario"],
+                    correct: 1,
+                    explanation: "El secuestro judicial es el aseguramiento de bienes muebles del demandado para garantizar la efectividad de la sentencia."
+                },
+                {
+                    question: "¿Qué es el arraigo?",
+                    options: ["Una multa", "Medida que impide al demandado ausentarse del lugar del juicio", "Un depósito", "Una fianza"],
+                    correct: 1,
+                    explanation: "El arraigo es una medida que impide al demandado ausentarse del lugar del juicio sin autorización del juez."
+                },
+                {
+                    question: "¿Cuándo procede la declaración de testigos como medio preparatorio?",
+                    options: ["Siempre", "Cuando los testigos son de edad avanzada o están enfermos", "Solo en juicio oral", "Nunca"],
+                    correct: 1,
+                    explanation: "La declaración de testigos como medio preparatorio procede excepcionalmente cuando los testigos son de edad avanzada o están enfermos."
+                },
+                {
+                    question: "¿Qué requisito se necesita para solicitar medios preparatorios?",
+                    options: ["Ninguno", "Justificación de la necesidad y ofrecimiento de garantía", "Solo fianza", "Solo autorización del demandado"],
+                    correct: 1,
+                    explanation: "Se requiere justificar la necesidad de la medida y ofrecer garantía suficiente para responder por los daños que pueda causar."
+                },
+                {
+                    question: "¿Con cuántos días de anticipación se debe requerir la declaración del demandado?",
+                    options: ["1 día", "3 días", "5 días", "10 días"],
+                    correct: 1,
+                    explanation: "El demandado debe ser requerido con al menos 3 días de anticipación para que pueda comparecer."
+                },
+                {
+                    question: "¿Contra quiénes proceden los medios preparatorios?",
+                    options: ["Solo contra el actor", "Contra la persona que se pretende demandar", "Contra el juez", "Contra los testigos"],
+                    correct: 1,
+                    explanation: "Los medios preparatorios proceden contra la persona que se pretende demandar y los posibles responsables solidarios."
+                },
+                {
+                    question: "¿Qué se levanta durante la declaración del demandado?",
+                    options: ["Una sentencia", "Un acta de la declaración", "Un contrato", "Una demanda"],
+                    correct: 1,
+                    explanation: "Durante la declaración del demandado se levanta un acta donde se deja constancia de las respuestas proporcionadas."
+                },
+                {
+                    question: "¿Qué diferencia hay entre secuestro y arraigo?",
+                    options: ["No hay diferencia", "El secuestro asegura bienes y el arraigo impide ausentarse", "El arraigo es una fianza", "El secuestro es para bienes inmuebles"],
+                    correct: 1,
+                    explanation: "El secuestro asegura bienes muebles del demandado, mientras que el arraigo impide que este se ausente del lugar del juicio."
+                }
+            ],
+            4: [
+                {
+                    question: "¿Cuándo se utiliza el juicio ordinario mercantil?",
+                    options: ["Siempre", "Cuando no existe procedimiento específico para la controversia", "Solo en juicios ejecutivos", "Solo para demandas menores"],
+                    correct: 1,
+                    explanation: "El juicio ordinario mercantil se utiliza cuando no existe un procedimiento específico para el tipo de controversia."
+                },
+                {
+                    question: "¿Qué requisitos debe cumplir un título para juicio ejecutivo?",
+                    options: ["Ninguno especial", "Ser exigible, constar en título de crédito o ejecutivo", "Solo estar firmado", "Ser notariado"],
+                    correct: 1,
+                    explanation: "El título debe ser exigible (vencido y no pagado), constar en título de crédito o documento ejecutivo."
+                },
+                {
+                    question: "¿Cuántos días tiene el demandado para contestar en juicio ordinario?",
+                    options: ["3 días", "5 días", "10 días", "15 días"],
+                    correct: 3,
+                    explanation: "En juicio ordinario, el demandado tiene 15 días para contestar la demanda."
+                },
+                {
+                    question: "¿Cuántos días dura el término probatorio en juicio ordinario?",
+                    options: ["20 días", "30 días", "40 días", "60 días"],
+                    correct: 2,
+                    explanation: "El término probatorio en juicio ordinario es de 40 días."
+                },
+                {
+                    question: "¿Cuántos días tiene el demandado para oponer excepciones en juicio ejecutivo?",
+                    options: ["1 día", "3 días", "5 días", "15 días"],
+                    correct: 1,
+                    explanation: "En juicio ejecutivo, el demandado tiene 3 días para oponer excepciones."
+                },
+                {
+                    question: "¿Qué tipo de pruebas se admiten en juicio ejecutivo?",
+                    options: ["Todas", "Solo documentales", "Testimoniales y documentales", "Periciales"],
+                    correct: 1,
+                    explanation: "En juicio ejecutivo solo se admiten pruebas documentales."
+                },
+                {
+                    question: "¿Qué es el juicio oral mercantil?",
+                    options: ["Un procedimiento largo", "Un procedimiento breve y concentrado", "Un arbitraje", "Una conciliación"],
+                    correct: 1,
+                    explanation: "El juicio oral mercantil es un procedimiento breve y concentrado con audiencias orales."
+                },
+                {
+                    question: "¿Cuándo se celebra la audiencia preliminar en juicio oral?",
+                    options: ["Dentro de los 10 días siguientes a la notificación", "Dentro de los 30 días", "Al final del juicio", "Antes de la demanda"],
+                    correct: 0,
+                    explanation: "La audiencia preliminar se celebra dentro de los 10 días siguientes a la notificación."
+                },
+                {
+                    question: "¿Qué sucede en la audiencia preliminar de juicio oral?",
+                    options: ["Solo se desahogan pruebas", "Se intenta conciliación, precisan puntos de prueba y proponen pruebas", "Se dicta sentencia", "Se interpone demanda"],
+                    correct: 1,
+                    explanation: "En la audiencia preliminar se intenta la conciliación, se precisan los puntos de prueba y se proponen las pruebas."
+                },
+                {
+                    question: "¿Cuántos días después de la audiencia preliminar se celebra la de juicio?",
+                    options: ["5 días", "10 días", "15 días", "30 días"],
+                    correct: 2,
+                    explanation: "La audiencia de juicio se celebra dentro de los 15 días siguientes a la audiencia preliminar."
+                }
+            ],
+            5: [
+                {
+                    question: "¿Qué requisitos se necesitan para que proceda una acción?",
+                    options: ["Solo tener abogado", "Legitimación activa, interés jurídico, no cosa juzgada ni prescripción", "Solo firmar la demanda", "Ningún requisito"],
+                    correct: 1,
+                    explanation: "Se requiere legitimación activa del actor, interés jurídico actual, y que no exista cosa juzgada ni prescripción."
+                },
+                {
+                    question: "¿Cuáles son los elementos de un escrito procesal?",
+                    options: ["Solo la firma", "Nombre del promovente, abogado, hechos, derecho y petición", "Solo los hechos", "Solo el derecho"],
+                    correct: 1,
+                    explanation: "Los escritos deben contener nombre y firma del promovente, nombre del abogado, hechos, fundamentos de derecho y petición."
+                },
+                {
+                    question: "¿Qué es la contestación de la demanda?",
+                    options: ["La demanda del actor", "Acto mediante el cual el demandado ejerce su derecho de defensa", "La sentencia", "El recurso"],
+                    correct: 1,
+                    explanation: "La contestación es el acto procesal mediante el cual el demandado ejerce su derecho de defensa frente a las pretensiones del actor."
+                },
+                {
+                    question: "¿Cuántos días tiene el demandado para contestar en juicio ordinario?",
+                    options: ["3 días", "5 días", "10 días", "15 días"],
+                    correct: 3,
+                    explanation: "En juicio ordinario, el demandado tiene 15 días para contestar la demanda."
+                },
+                {
+                    question: "¿Qué son las excepciones dilatorias?",
+                    options: ["Excepciones que extinguen la acción", "Excepciones que impiden momentáneamente la prosecución del juicio", "Excepciones definitivas", "Medios de prueba"],
+                    correct: 1,
+                    explanation: "Las excepciones dilatorias impiden momentáneamente la prosecución del juicio, como la incompetencia o la personalidad."
+                },
+                {
+                    question: "¿Qué es una tercería?",
+                    options: ["Un incidente entre las partes", "Intervención de un tercero en el juicio", "Un recurso", "Una notificación"],
+                    correct: 1,
+                    explanation: "La tercería es la intervención de un tercero en el juicio que tiene interés en el resultado."
+                },
+                {
+                    question: "¿Qué es un impedimento judicial?",
+                    options: ["Una excusa del juez", "Causa que impide al juez conocer del asunto", "Una recusa", "Un recurso"],
+                    correct: 1,
+                    explanation: "El impedimento es una causa que impide al juez conocer del asunto, como el parentesco o interés en el resultado."
+                },
+                {
+                    question: "¿Qué diferencia hay entre impedimento, excusa y recusa?",
+                    options: ["No hay diferencia", "Impedimento es causal, excusa es renuncia, recusa es solicitud de apartamiento", "Solo cambia el nombre", "Son lo mismo"],
+                    correct: 1,
+                    explanation: "El impedimento es una causa objetiva, la excusa es la renuncia voluntaria del juez, y la recusa es la solicitud de apartamiento por las partes."
+                },
+                {
+                    question: "¿Qué son las excepciones perentorias?",
+                    options: ["Excepciones temporales", "Excepciones que extinguen la acción del actor", "Excepciones procesales", "Excepciones dilatorias"],
+                    correct: 1,
+                    explanation: "Las excepciones perentorias son aquellas que extinguen la acción del actor, como el pago o la compensación."
+                },
+                {
+                    question: "¿Qué es el traslado en un juicio?",
+                    options: ["La sentencia", "El plazo para que el demandado conteste la demanda", "El recurso", "La audiencia"],
+                    correct: 1,
+                    explanation: "El traslado es el plazo que se concede al demandado para que conteste la demanda."
+                }
+            ],
+            6: [
+                {
+                    question: "¿Sobre quién recae la carga de la prueba?",
+                    options: ["Sobre el juez", "Sobre quien afirma un hecho favorable a su derecho", "Sobre el demandado siempre", "Sobre el actor siempre"],
+                    correct: 1,
+                    explanation: "La carga de la prueba recae sobre quien afirma un hecho favorable a su derecho."
+                },
+                {
+                    question: "¿Cuál es el objetivo de la etapa probatoria?",
+                    options: ["Retrasar el juicio", "Demostrar la verdad de los hechos alegados", "Castigar al demandado", "Satisfacer al juez"],
+                    correct: 1,
+                    explanation: "El objetivo es demostrar la verdad de los hechos alegados y convencer al juzgador de la certeza de las afirmaciones."
+                },
+                {
+                    question: "¿Cuántos días dura el término probatorio en juicio ordinario?",
+                    options: ["20 días", "30 días", "40 días", "50 días"],
+                    correct: 2,
+                    explanation: "El término probatorio en juicio ordinario es de 40 días."
+                },
+                {
+                    question: "¿Qué es la prueba documental?",
+                    options: ["Declaración de testigos", "Documentos públicos o privados que demuestran hechos o actos", "Opinión de peritos", "Inspección judicial"],
+                    correct: 1,
+                    explanation: "La prueba documental son documentos públicos o privados que demuestren la existencia de hechos o actos jurídicos."
+                },
+                {
+                    question: "¿Qué diferencia hay entre documento público y privado?",
+                    options: ["No hay diferencia", "Público: otorgado por funcionario; Privado: entre particulares", "El público es más importante", "El privado es oficial"],
+                    correct: 1,
+                    explanation: "El documento público es otorgado por funcionario público (escrituras, constancias) y el privado entre particulares (contratos, cartas)."
+                },
+                {
+                    question: "¿Qué es la prueba confesional?",
+                    options: ["Declaración de testigos", "Declaración de una de las partes bajo protesta de decir verdad", "Opinión de expertos", "Documentos"],
+                    correct: 1,
+                    explanation: "La prueba confesional es la declaración que hace una de las partes bajo protesta de decir verdad."
+                },
+                {
+                    question: "¿Qué es la prueba testimonial?",
+                    options: ["Declaración de las partes", "Declaración de terceros ajenos al juicio", "Documentos", "Peritajes"],
+                    correct: 1,
+                    explanation: "La prueba testimonial es la declaración de terceros ajenos al juicio que tienen conocimiento de los hechos."
+                },
+                {
+                    question: "¿Qué es la inspección judicial?",
+                    options: ["Revisión de documentos", "El juez visita personalmente el lugar para observar los hechos", "Peritaje", "Declaración"],
+                    correct: 1,
+                    explanation: "La inspección judicial es cuando el juez visita personalmente el lugar para observar y examinar los hechos."
+                },
+                {
+                    question: "¿Qué son las presunciones legales?",
+                    options: ["Deducciones del juez", "Hechos que la ley establece como ciertos sin admitir prueba en contrario", "Opiniones de peritos", "Declaraciones de testigos"],
+                    correct: 1,
+                    explanation: "Las presunciones legales son hechos que la ley establece como ciertos y no admiten prueba en contrario."
+                },
+                {
+                    question: "¿Qué es la instrumental de actuaciones?",
+                    options: ["Prueba documental", "Las constancias del propio expediente que el juez valora directamente", "Declaración de partes", "Peritaje"],
+                    correct: 1,
+                    explanation: "La instrumental de actuaciones se refiere a las constancias del propio expediente y no requiere ofrecimiento."
+                }
+            ],
+            7: [
+                {
+                    question: "¿Qué son los alegatos?",
+                    options: ["Una prueba más", "Argumentos para convencer al juez sobre la justeza de la pretensión", "Una demanda", "Un recurso"],
+                    correct: 1,
+                    explanation: "Los alegatos son los argumentos orales o escritos que presentan las partes al juez para convencerlo sobre la justeza de su pretensión."
+                },
+                {
+                    question: "¿Cuándo se presentan los alegatos?",
+                    options: ["Al inicio del juicio", "Después de la etapa probatoria", "Antes de la demanda", "Durante la contestación"],
+                    correct: 1,
+                    explanation: "Los alegatos se presentan después de la etapa probatoria, cuando ya se han desahogado todas las pruebas."
+                },
+                {
+                    question: "¿Qué es la sentencia?",
+                    options: ["Un recurso", "Resolución judicial que decide el fondo del asunto", "Una notificación", "Un acto procesal"],
+                    correct: 1,
+                    explanation: "La sentencia es la resolución judicial que decide el fondo del asunto y pone fin al juicio en primera instancia."
+                },
+                {
+                    question: "¿Qué requisitos debe cumplir una sentencia?",
+                    options: ["Solo ser clara", "Ser fundada y motivada, pronunciarse sobre cada acción", "Solo ser breve", "Ningún requisito"],
+                    correct: 1,
+                    explanation: "La sentencia debe ser fundada y motivada, y debe pronunciarse sobre cada una de las acciones ejercitadas."
+                },
+                {
+                    question: "¿Qué es la apelación?",
+                    options: ["Revisión por el mismo juez", "Revisión de la sentencia por un tribunal superior", "Un nuevo juicio", "Una conciliación"],
+                    correct: 1,
+                    explanation: "La apelación es la revisión de la sentencia por un tribunal superior."
+                },
+                {
+                    question: "¿Cuándo se interpone la apelación?",
+                    options: ["Dentro de 24 horas", "Dentro de los 3 días siguientes a la notificación", "Dentro de 30 días", "Cuando se quiera"],
+                    correct: 1,
+                    explanation: "La apelación se interpone dentro de los 3 días siguientes a la notificación de la sentencia."
+                },
+                {
+                    question: "¿Qué es la revocación?",
+                    options: ["Revisión por tribunal superior", "Revisión por el mismo juez que la dictó contra decretos y autos", "Un recurso extraordinario", "Una apelación"],
+                    correct: 1,
+                    explanation: "La revocación es la revisión por el mismo juez que la dictó, y procede contra decretos y autos."
+                },
+                {
+                    question: "¿Qué es el pregón de remate?",
+                    options: ["La sentencia de remate", "Publicidad que se da a la venta en pública subasta de bienes embargados", "El avalúo", "Las pujas"],
+                    correct: 1,
+                    explanation: "El pregón de remate es la publicidad que se da a la venta en pública subasta de bienes embargados."
+                },
+                {
+                    question: "¿Qué es el avalúo en el remate?",
+                    options: ["El precio final", "Valoración de los bienes que fija el precio mínimo de venta", "La puja máxima", "El depósito"],
+                    correct: 1,
+                    explanation: "El avalúo es la valoración de los bienes que fija el precio mínimo de venta en la subasta."
+                },
+                {
+                    question: "¿Qué es la adjudicación en el remate?",
+                    options: ["La publicación del pregón", "Asignación del bien al mejor postor", "El avalúo", "La fianza"],
+                    correct: 1,
+                    explanation: "La adjudicación es la asignación del bien al mejor postor en la subasta pública."
+                }
+            ]
+        };
+
+        // ============================================================
+        // VARIABLES GLOBALES
+        // ============================================================
+        let currentQuiz = [];
+        let currentQuestionIndex = 0;
+        let score = 0;
+        let correctAnswers = 0;
+        let totalAnswered = 0;
+        let summaries = JSON.parse(localStorage.getItem('summaries') || '[]');
+
+        // ============================================================
+        // NAVEGACIÓN
+        // ============================================================
+        function showSection(sectionId) {
+            document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+            document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+            document.getElementById(sectionId).classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        // ============================================================
+        // TEMARIO
+        // ============================================================
+        function initTopicList() {
+            const container = document.getElementById('topicList');
+            topicsData.forEach(topic => {
+                const div = document.createElement('div');
+                div.className = 'topic-item';
+                div.onclick = () => showTopicDetail(topic.id);
+                div.innerHTML = `
+                    <h4>${topic.title}</h4>
+                    <p>${topic.sections.length} secciones</p>
+                `;
+                container.appendChild(div);
+            });
+        }
+
+        function showTopicDetail(topicId) {
+            const topic = topicsData.find(t => t.id === topicId);
+            if (!topic) return;
+
+            document.getElementById('topicList').classList.add('hidden');
+            const detail = document.getElementById('topicDetail');
+            detail.classList.remove('hidden');
+
+            document.getElementById('topicTitle').textContent = topic.title;
+            let content = '';
+            topic.sections.forEach(section => {
+                content += `<h3>${section.subtitle}</h3>${section.content}`;
+            });
+            document.getElementById('topicContent').innerHTML = content;
+        }
+
+        function hideTopicDetail() {
+            document.getElementById('topicList').classList.remove('hidden');
+            document.getElementById('topicDetail').classList.add('hidden');
+        }
+
+        // ============================================================
+        // SELECTORES
+        // ============================================================
+        function initSelectors() {
+            const selects = ['studyTopicSelect', 'quizTopicSelect', 'summaryTopicSelect'];
+            topicsData.forEach(topic => {
+                selects.forEach(selectId => {
+                    const select = document.getElementById(selectId);
+                    const option = document.createElement('option');
+                    option.value = topic.id;
+                    option.textContent = topic.title;
+                    select.appendChild(option);
+                });
+            });
+        }
+
+        // ============================================================
+        // MODO ESTUDIO
+        // ============================================================
+        function loadStudyTopic() {
+            const topicId = parseInt(document.getElementById('studyTopicSelect').value);
+            if (!topicId) {
+                document.getElementById('studyContent').classList.add('hidden');
+                return;
+            }
+
+            const topic = topicsData.find(t => t.id === topicId);
+            if (!topic) return;
+
+            document.getElementById('studyContent').classList.remove('hidden');
+            document.getElementById('studyTitle').textContent = topic.title;
+
+            let content = '';
+            topic.sections.forEach(section => {
+                content += `<h3>${section.subtitle}</h3>${section.content}`;
+            });
+            document.getElementById('studyBody').innerHTML = content;
+        }
+
+        // ============================================================
+        // QUIZ
+        // ============================================================
+        function loadQuiz() {
+            const topicId = parseInt(document.getElementById('quizTopicSelect').value);
+            if (!topicId) return;
+
+            currentQuiz = [...(quizQuestions[topicId] || [])];
+            shuffleArray(currentQuiz);
+            currentQuestionIndex = 0;
+            score = 0;
+            correctAnswers = 0;
+            totalAnswered = 0;
+
+            document.getElementById('totalQuestions').textContent = currentQuiz.length;
+            document.getElementById('scoreDisplay').textContent = '0';
+            document.getElementById('correctCount').textContent = '0';
+            document.getElementById('newQuizBtn').style.display = 'none';
+            document.getElementById('resetBtn').style.display = 'inline-block';
+
+            showQuestion();
+        }
+
+        function showQuestion() {
+            if (currentQuestionIndex >= currentQuiz.length) {
+                finishQuiz();
+                return;
+            }
+
+            const q = currentQuiz[currentQuestionIndex];
+            document.getElementById('questionNumber').textContent = `Pregunta ${currentQuestionIndex + 1} de ${currentQuiz.length}`;
+            document.getElementById('questionNum').textContent = currentQuestionIndex + 1;
+            document.getElementById('questionText').textContent = q.question;
+
+            const progress = ((currentQuestionIndex) / currentQuiz.length) * 100;
+            document.getElementById('progressFill').style.width = `${progress}%`;
+
+            const container = document.getElementById('optionsContainer');
+            container.innerHTML = '';
+
+            q.options.forEach((option, index) => {
+                const btn = document.createElement('button');
+                btn.className = 'option-btn';
+                btn.textContent = `${String.fromCharCode(65 + index)}) ${option}`;
+                btn.onclick = () => selectAnswer(index);
+                container.appendChild(btn);
+            });
+
+            document.getElementById('feedback').className = 'feedback';
+            document.getElementById('nextBtn').style.display = 'none';
+        }
+
+        function selectAnswer(index) {
+            const q = currentQuiz[currentQuestionIndex];
+            const buttons = document.querySelectorAll('.option-btn');
+            const feedback = document.getElementById('feedback');
+
+            buttons.forEach((btn, i) => {
+                btn.classList.add('disabled');
+                if (i === q.correct) btn.classList.add('correct');
+                if (i === index && index !== q.correct) btn.classList.add('incorrect');
+            });
+
+            totalAnswered++;
+            if (index === q.correct) {
+                correctAnswers++;
+                score += 10;
+                feedback.className = 'feedback show correct';
+                document.getElementById('feedbackTitle').textContent = '¡Correcto!';
+            } else {
+                feedback.className = 'feedback show incorrect';
+                document.getElementById('feedbackTitle').textContent = 'Incorrecto';
+            }
+
+            document.getElementById('feedbackText').textContent = q.explanation;
+            document.getElementById('scoreDisplay').textContent = score;
+            document.getElementById('correctCount').textContent = correctAnswers;
+
+            if (currentQuestionIndex < currentQuiz.length - 1) {
+                document.getElementById('nextBtn').style.display = 'inline-block';
+            } else {
+                document.getElementById('newQuizBtn').style.display = 'inline-block';
+                document.getElementById('newQuizBtn').textContent = 'Ver Resultados';
+            }
+        }
+
+        function nextQuestion() {
+            currentQuestionIndex++;
+            showQuestion();
+        }
+
+        function finishQuiz() {
+            const percentage = Math.round((correctAnswers / currentQuiz.length) * 100);
+            document.getElementById('questionCard').innerHTML = `
+                <div class="question-text" style="text-align: center; font-size: 1.5rem;">
+                    ¡Quiz Completado!
+                </div>
+                <div class="stats" style="margin-top: 30px;">
+                    <div class="stat-item">
+                        <div class="stat-value" style="color: ${percentage >= 70 ? '#4caf50' : '#f44336'}">${percentage}%</div>
+                        <div class="stat-label">Aciertos</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">${correctAnswers}</div>
+                        <div class="stat-label">Correctas</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">${currentQuiz.length - correctAnswers}</div>
+                        <div class="stat-label">Incorrectas</div>
+                    </div>
+                </div>
+                <div style="text-align: center; margin-top: 20px;">
+                    <button class="btn btn-primary" onclick="loadQuiz()">Nuevo Quiz</button>
+                    <button class="btn btn-secondary" onclick="resetQuiz()">Reiniciar</button>
+                </div>
+            `;
+        }
+
+        function resetQuiz() {
+            currentQuiz = [];
+            currentQuestionIndex = 0;
+            score = 0;
+            correctAnswers = 0;
+            totalAnswered = 0;
+
+            document.getElementById('scoreDisplay').textContent = '0';
+            document.getElementById('questionNum').textContent = '1';
+            document.getElementById('correctCount').textContent = '0';
+            document.getElementById('progressFill').style.width = '0%';
+
+            document.getElementById('questionCard').innerHTML = `
+                <div class="question-number" id="questionNumber">Pregunta 1 de 10</div>
+                <div class="question-text" id="questionText">Selecciona un tema para comenzar el quiz</div>
+                <div class="options" id="optionsContainer"></div>
+                <div class="feedback" id="feedback">
+                    <h4 id="feedbackTitle"></h4>
+                    <p id="feedbackText"></p>
+                </div>
+            `;
+        }
+
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+        }
+
+        // ============================================================
+        // RESÚMENES
+        // ============================================================
+        function loadSummaryTemplate() {
+            const topicId = parseInt(document.getElementById('summaryTopicSelect').value);
+            if (!topicId) return;
+
+            const topic = topicsData.find(t => t.id === topicId);
+            if (!topic) return;
+
+            document.getElementById('summaryName').value = `Resumen - ${topic.title}`;
+            loadTemplate('general');
+        }
+
+        function loadTemplate(type) {
+            const topicId = parseInt(document.getElementById('summaryTopicSelect').value);
+            const topic = topicsData.find(t => t.id === topicId);
+
+            let template = '';
+
+            switch(type) {
+                case 'general':
+                    template = topic ? `
+# ${topic.title}
+
+## Conceptos principales:
+- 
+
+## Ideas clave:
+- 
+
+## Conclusiones:
+- 
+
+## Dudas pendientes:
+- 
+                    `.trim() : 'Selecciona un tema primero';
+                    break;
+
+                case 'definiciones':
+                    template = topic ? `
+# Definiciones Clave - ${topic.title}
+
+## Términos importantes:
+| Término | Definición |
+|---------|------------|
+| | |
+| | |
+| | |
+                    `.trim() : 'Selecciona un tema primero';
+                    break;
+
+                case 'comparativa':
+                    template = `
+# Tabla Comparativa
+
+| Concepto | Característica 1 | Característica 2 | Diferencia |
+|----------|------------------|------------------|------------|
+| | | | |
+| | | | |
+| | | | |
+                    `.trim();
+                    break;
+
+                case 'pasos':
+                    template = `
+# Pasos y Procedimientos
+
+## 1. Primer paso:
+- 
+
+## 2. Segundo paso:
+- 
+
+## 3. Tercer paso:
+- 
+
+## 4. Cuarto paso:
+- 
+
+## Observaciones:
+- 
+                    `.trim();
+                    break;
+            }
+
+            document.getElementById('summaryEditor').value = template;
+        }
+
+        function saveSummary() {
+            const name = document.getElementById('summaryName').value.trim();
+            const content = document.getElementById('summaryEditor').value.trim();
+
+            if (!name || !content) {
+                alert('Por favor ingresa un nombre y contenido para el resumen.');
+                return;
+            }
+
+            const summary = {
+                id: Date.now(),
+                name: name,
+                content: content,
+                date: new Date().toLocaleDateString('es-MX')
+            };
+
+            summaries.push(summary);
+            localStorage.setItem('summaries', JSON.stringify(summaries));
+            renderSavedSummaries();
+            alert('¡Resumen guardado exitosamente!');
+        }
+
+        function clearSummary() {
+            document.getElementById('summaryEditor').value = '';
+            document.getElementById('summaryName').value = '';
+        }
+
+        function exportSummary() {
+            const content = document.getElementById('summaryEditor').value;
+            if (!content) {
+                alert('No hay contenido para exportar.');
+                return;
+            }
+
+            const blob = new Blob([content], { type: 'text/plain;charset=utf-8' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `${document.getElementById('summaryName').value || 'resumen'}.txt`;
+            a.click();
+            URL.revokeObjectURL(url);
+        }
+
+        function loadSavedSummary(id) {
+            const summary = summaries.find(s => s.id === id);
+            if (summary) {
+                document.getElementById('summaryName').value = summary.name;
+                document.getElementById('summaryEditor').value = summary.content;
+            }
+        }
+
+        function deleteSummary(id) {
+            if (confirm('¿Estás seguro de eliminar este resumen?')) {
+                summaries = summaries.filter(s => s.id !== id);
+                localStorage.setItem('summaries', JSON.stringify(summaries));
+                renderSavedSummaries();
+            }
+        }
+
+        function renderSavedSummaries() {
+            const container = document.getElementById('savedSummariesList');
+            if (summaries.length === 0) {
+                container.innerHTML = '<div class="empty-state"><p>No hay resúmenes guardados aún.</p></div>';
+                return;
+            }
+
+            container.innerHTML = summaries.map(s => `
+                <div class="saved-summary-item">
+                    <div>
+                        <h4>${s.name}</h4>
+                        <p>${s.date}</p>
+                    </div>
+                    <div>
+                        <button class="btn btn-secondary" onclick="loadSavedSummary(${s.id})" style="padding: 8px 15px; font-size: 0.85rem;">Cargar</button>
+                        <button class="btn btn-secondary" onclick="deleteSummary(${s.id})" style="padding: 8px 15px; font-size: 0.85rem; margin-left: 5px;">Eliminar</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // ============================================================
+        // INICIALIZACIÓN
+        // ============================================================
+        document.addEventListener('DOMContentLoaded', () => {
+            initTopicList();
+            initSelectors();
+            renderSavedSummaries();
+        });
+    </script>
+</body>
+</html>
